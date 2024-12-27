@@ -55,4 +55,5 @@ def compute_and_compare_zeta():
         print(f"Number of terms used to reach convergence: {terms_used}\n")
 
 # Run the function to compute and compare
+# This is a comment that I will push to the repository
 compute_and_compare_zeta()
