@@ -1,0 +1,44 @@
+import math 
+
+def zeta_series(s, max_n):
+    """Compute zeta(s) using the series definition up to max_n."""
+    return sum(1 / (n **s) for n in range(1, max_n + 1))
+
+def find_n_for_convergence(s, tolerance=1e-10):
+    """Find the minimum n that achieves the desired accuracy."""
+    exact_value = zeta_series(s, 1000) 
+    #Use a large max_n for a reference exact value
+    n = 1
+    approx_value = 0
+    while True:
+        approx_value += 1 / (n ** s)
+        if abs(approx_value - exact_value) < tolerance:
+            return n, approx_value
+        n += 1
+
+results = {}
+for s in range (2, 11): 
+    #Start from s = 2 because zeta(1) diverges
+    n, approx_value = find_n_for_convergence(s)
+    exact_value = zeta_series(s, 1000) 
+    # Reference exact value 
+    results[s] = {'n': n, 'approx_value': approx_value, 'exact_value': exact_value}
+    print(f"s = {s}, n = {n}, Approx = {approx_value:.10f}, Exact = {exact_value:.10f}")
+
+# Add a space for a new paragraph
+print("\n") # This will create a blank line
+
+def kummer_theorem(s):
+    """Validate Kummer's functional equation for zeta(s)."""
+    if s == 1: #Avoid divergence at s = 1
+        return None, None
+    
+    lhs = zeta_series(1 - s, 1000)
+    rhs = 2 * (2 * math.pi) ** (-s) * math.cos(math.pi * s / 2) * math.gamma(s) * zeta_series(s, 1000)
+    return lhs, rhs
+
+# Validate for s = 2 to 10
+for s in range(2,11):
+    lhs, rhs = kummer_theorem(s)
+    if lhs is not None:
+        print(f"s = {s}, LHS = {lhs:.10f}, RHS = {rhs:.10f}, Difference = {abs(lhs - rhs):.10e}")

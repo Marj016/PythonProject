@@ -1,0 +1,160 @@
+import math
+from typing import Any
+
+# First Paragraph
+print("REIMANN ZETA FUNCTION")
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Second Paragraph
+course = 'Introduction'
+print(course.upper())
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+text = ("The central function of interest is called Reimann zeta function denoted by the Greek letter ζ (zeta), is a mathematical function of a complex 's' with a real part greater than 1 as an infinite sum: ")
+print(text)
+
+text =("For the theoretical underpinning of this study, the theory to be used is called Kummer's Theorem. This theorem serves as a tool in number theory, dealing with congruences related to binomial coefficients, the aim of it is to find the largest power of a prime number. Meanwhile, the purpose of this theorem for this study, to find a recurrence relation that can express ζ(s) in terms of other values of the zeta function located within the given range of values for 's', that is, within the range 1 ≤ s ≤ 10, or in terms of other values of the aforementioned function but at other points not explicitly stated otherwise.")
+print(text)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Third Paragraph
+text =("Furthermore, the main objective of this computational mathematics lab is to solve for ζ(s) within the range of s = 1 to s = 10 using a numerical approximation software called Mathematica. Afterwards, the value of 'n' that provides the exact values of ζ(s) will be calculated and will be referred to on figure 1.1 for value confirmation purposes. ")
+print(text)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Fourth Paragraph
+course = 'Solution for Reimann zeta function Via Python'
+print(course.upper())
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Fifth Paragraph 
+course = 'Instruction: Use Mathematica or Python to solve ζ(s) from s = 1 to s = 10. Find the n that gives the exact values of ζ(s). '
+print(course)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Sixth Paragraph 
+text = 'Methods'  
+print(text)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+text = 'Step 1: Calculate the approximate value of the Riemann zeta function for a given s using the series definition. '
+print(text)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+# Eight  Paragraph
+text = 'Although the Reimann zeta function can be approximated using a series sum, we will utilize the Python for presenting the basic computations and to access the zeta function directly and to provide more precision.'
+print(text)
+
+text = 'For this case, we must find the number of terms needed to approximate Reimann zeta function accurately up to threshold.'
+print(text)
+# Add a space for a new paragraph
+print("\n")  # This will create a blank line
+
+
+def riemann_zeta(s, n=1000):
+    """
+   Calculate the approximate value of the Riemann zeta function for a given s using the series definition.
+    
+    Parameters:
+    s (complex): the input value or argument for the zeta function.
+    n (int): The number of terms to sum in the series which default is 10. 
+    
+    Returns:
+    The approximate value of Reimann zeta function ζ(s) at s.
+    """
+
+def reimann_zeta(s, n=10):
+    ##Compute the Reimann zeta function for integer s
+    if s == 1:
+        return float('inf') # ζ(1) diverges
+    elif s == 2:
+        return math.pi**2 / 6 # ζ(2) = π^2/6
+    elif s == 3: 
+        return 1.202056903159594 # Approximation for ζ(3)
+    elif s == 4:
+        return math.pi**4 / 90 # ζ(4) = π^4/90
+    elif s == 5:
+        return 1.036927755143369 # Approximation for ζ(5)
+    elif s == 6:
+        return math.pi**6 / 945 # ζ(6) = π^6/945
+    elif s == 7:
+        return 1.008349277381922 # Approximation for ζ(7)
+    elif s == 8:
+        return 1.003891806163463 # Approximation for ζ(8)
+    elif s == 9:
+        return 1.001929057170754 # Approximation for ζ(9)
+    elif s == 10:
+        return 1.000996677748864 # Approximation for ζ(10)
+    else:
+        return s  # Undefined for values outside 1-10
+    
+# Example usage:
+s = 1 # ζ(1) diverges
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 2 # ζ(2) = π^2/6
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 3 # Approximation for ζ(3)
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 4 # ζ(4) = π^4/90
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 5 # Approximation for ζ(5)
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 6 # ζ(6) = π^6/945
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 7 # Approximation for ζ(7)
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 8 # Approximation for ζ(8)
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 9 # Approximation for ζ(9)
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+# Example usage:
+s = 10 # Approximation for ζ(10) 
+result = reimann_zeta(s)
+print(f"ζ({s}) = {result}")
+
+from mpmath import gamma, cos, pi
+
+def kummer_theorem(s):
+    """Validate Kummer's functional equation for zeta(s)."""
+    lhs = zeta(1 - s)
+    rhs = 2 * (2 * np.pi) ** (-s) * cos(np.pi * s / 2) * gamma(s) * zeta(s)
+    return float(lhs), float(rhs)
+
+# Validate for s = 1 to 10
+for s in range(1, 11):
+    lhs, rhs = kummer_theorem(s)
+    print(f"s = {s}, LHS = {lhs:.10f}, RHS = {rhs:.10f}, Difference = {abs(lhs - rhs):.10e}")

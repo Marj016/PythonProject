@@ -1,0 +1,43 @@
+from mpmath import mpmath
+
+def calculate_zeta2_kummer_iterations(target_zeta2, tolerance=1e-11):
+    """
+    Calculates the number of iterations needed for the Kummer-improved
+    Riemann Zeta function to match the target zeta(2) value.
+
+    Args:
+        target_zeta2: The target value of zeta(2).
+        tolerance: The desired accuracy for the calculation.
+
+    Returns:
+        The number of iterations required.
+    """
+    n = 1
+    kummer_sum = 0.0
+    alpha1_sum = 0.0  # Sum of the subtracted series (alpha_1)
+
+    while True:
+        kummer_term = (1 / (n**2)) - (1 / (n * (n + 1)))
+        alpha1_term = 1 / (n * (n + 1))
+
+        kummer_sum += kummer_term
+        alpha1_sum += alpha1_term
+
+        current_zeta2 = kummer_sum + alpha1_sum # Reconstruct zeta(2)
+
+        if abs(current_zeta2 - target_zeta2) < tolerance:
+            break
+        n += 1
+    return n
+
+# Set the desired precision for mpmath to get an accurate target
+mp.dps = 15  # Increased precision for target value
+
+# Get the target zeta(2) value from the table
+target_zeta2_table = mp.mpf('1.6449340668')
+
+# Calculate the number of iterations
+iterations_needed = calculate_zeta2_kummer_iterations(target_zeta2_table)
+
+print(f"Target ζ(2) from table: {target_zeta2_table}")
+print(f"Number of iterations for Kummer-improved series to match: {iterations_needed}")
